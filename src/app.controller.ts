@@ -6,17 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
-  @Post('/createClient')
-  createClient() {
-    return this.appService.createClient();
-  }
-
-  @Get('/getClients')
-  getClients() {
-    return this.appService.getClients();
+  async getHello() {
+    return this.appService.hola();
   }
 }
