@@ -7,32 +7,14 @@ import { createHmac } from 'crypto';
  * @returns Un objeto con los parámetros originales más la firma (parámetro 's').
  */
 export const signParams = (
-  params: Record<string, string>,
+  params: Record<string, string | number>,
   secretKey: string,
 ): Record<string, string> => {
-  // 1. Ordenar los parámetros alfabéticamente por nombre
-  const sortedParams = Object.keys(params)
-    .sort()
-    .reduce(
-      (acc, key) => {
-        acc[key] = params[key];
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
+  const sortedParams = Object.keys(params).sort();
+  const toSign = sortedParams.map((key) => key + String(params[key])).join('');
 
-  // 2. Concatenar los parámetros en el formato requerido
-  let stringToSign = '';
-  for (const [key, value] of Object.entries(sortedParams)) {
-    stringToSign += `${key}${value}`;
-  }
+  const hmac = createHmac('sha256', secretKey).update(toSign).digest('hex');
 
-  // 3. Firmar el string concatenado usando HMAC-SHA256
-  const hmac = createHmac('sha256', secretKey)
-    .update(stringToSign)
-    .digest('hex');
-
-  // 4. Retornar los parámetros originales más la firma
   return {
     ...params,
     s: hmac,
