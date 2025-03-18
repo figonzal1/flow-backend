@@ -9,24 +9,4 @@ export class AppController {
   async getHello() {
     return this.appService.hola();
   }
-
-  @Get('/registerCard')
-  registerCard() {
-    return this.appService.registerCard();
-  }
-
-  @Get('/getCharges')
-  cargosCliente() {
-    return this.appService.getCharges();
-  }
-
-  @Get('/makeCharge')
-  makeCharge() {
-    return this.appService.makeCharge();
-  }
-
-  @Get('/paymentOrder')
-  makePaymentOrder() {
-    return this.appService.makePaymentOrder();
-  }
 }
