@@ -20,13 +20,13 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@ganatiempo/flow-ts-lib": "file:../flow-ts-lib/ganatiempo-flow-ts-lib-1.0.0.tgz",
     "@nestjs/axios": "^4.0.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "axios": "^1.7.9",
+    "lightq-pay-flow": "file:../lightq-pay-flow/lightq-pay-flow-1.0.0.tgz",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },

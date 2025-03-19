@@ -1,7 +1,7 @@
-import FlowAPI from '@ganatiempo/flow-ts-lib';
-import { ENVIRONMENT } from '@ganatiempo/flow-ts-lib/lib/utils/constant';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import FlowAPI from 'lightq-pay-flow';
+import { ENVIRONMENT } from 'lightq-pay-flow/lib/utils/constant';
 
 @Module({
   providers: [
@@ -20,11 +20,14 @@ import { ConfigService } from '@nestjs/config';
           ENVIRONMENT[environment as unknown as keyof typeof ENVIRONMENT] ||
           ENVIRONMENT.SANDBOX;
 
-        return new FlowAPI({
-          apiKey,
-          secretKey,
-          environment,
-        });
+        return new FlowAPI(
+          {
+            apiKey,
+            secretKey,
+            environment,
+          },
+          'debug',
+        );
       },
       inject: [ConfigService],
     },
